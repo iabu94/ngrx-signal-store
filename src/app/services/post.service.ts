@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,8 @@ export class PostService {
 
   constructor() {}
 
-  getAll() {
-    return this.#http.get<Post[]>(this.#apiUrl);
+  async getAll() {
+    return await lastValueFrom(this.#http.get<Post[]>(this.#apiUrl));
   }
 
   getById(id: number) {

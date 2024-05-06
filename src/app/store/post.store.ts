@@ -1,17 +1,26 @@
-import { signalStore, withState } from '@ngrx/signals';
+import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { Post } from '../models';
+import { inject } from '@angular/core';
+import { PostService } from '../services';
 
 type PostState = {
   posts: Post[];
-  isLoading: boolean;
+  loading: boolean;
 };
 
 const initialState: PostState = {
   posts: [],
-  isLoading: false,
+  loading: false,
 };
 
 export const PostStore = signalStore(
   { providedIn: 'root' },
-  withState(initialState)
+  withState(initialState),
+  withMethods((store, postService = inject(PostService)) => ({
+    async loadAll() {
+      patchState(store, { loading: true });
+      const posts = await postService.getAll();
+      patchState(store, { posts, loading: false });
+    },
+  }))
 );

@@ -1,0 +1,9 @@
+@for (post of vm().posts; track post.id) {
+  <mat-card class="mat-elevation-z8">
+    <mat-card-content>{{ post.id + '. ' + post.title }}</mat-card-content>
+  </mat-card>
+}
+
+@if (vm().loading) {
+  <mat-spinner />
+}

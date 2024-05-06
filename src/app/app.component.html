@@ -1,8 +1,3 @@
 <h1>Posts</h1>
 
-@for (post of posts(); track post.id) {
-  <mat-card class="mat-elevation-z8">
-    <mat-card-content>{{ post.id + '. ' + post.title }}</mat-card-content>
-  </mat-card>
-
-}
+<router-outlet />
