@@ -21,8 +21,23 @@ export class PostService {
     return this.#http.get<Post>(`${this.#apiUrl}/${id}`);
   }
 
-  add(post: Post) {
-    return this.#http.post<Post>(this.#apiUrl, post);
+  async add(post: Post) {
+    const newPost = {
+      category: 'lorem',
+      content: post.title,
+      image:
+        'https://dummyimage.com/800x430/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org',
+      publishedAt: '04/02/2023 13:25:21',
+      slug: 'lorem-ipsum',
+      status: 'published',
+      thumbnail:
+        'https://dummyimage.com/200x200/FFFFFF/lorem-ipsum.png&text=jsonplaceholder.org',
+      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      updatedAt: '14/03/2023 17:22:20',
+      url: 'https://jsonplaceholder.org/posts/lorem-ipsum',
+      userId: 1,
+    };
+    return lastValueFrom(this.#http.post<Post>(this.#apiUrl, newPost));
   }
 
   update(id: number, post: Post) {

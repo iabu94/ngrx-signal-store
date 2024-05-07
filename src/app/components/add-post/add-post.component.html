@@ -1,0 +1,10 @@
+<mat-dialog-content>
+  <p>Add Post</p>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input [(ngModel)]="title" matInput>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="save()" mat-button>Save</button>
+</mat-dialog-actions>

@@ -1,9 +1,13 @@
-@for (post of vm().posts; track post.id) {
-  <mat-card class="mat-elevation-z8">
-    <mat-card-content>{{ post.id + '. ' + post.title }}</mat-card-content>
-  </mat-card>
-}
+<button (click)="openDialog()" color="primary" mat-raised-button>Add new post</button>
 
 @if (vm().loading) {
   <mat-spinner />
+} @else {
+  <div style="display: flex; flex-wrap: wrap">
+    @for (post of vm().posts; track post.id) {
+      <mat-card class="mat-elevation-z8" style="margin: 10px">
+        <mat-card-content>{{ post.id + '. ' + post.title }}</mat-card-content>
+      </mat-card>
+    }
+  </div>
 }
